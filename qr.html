@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Generador de código QR personalizado</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+<body>
+  <img src="https://quickchart.io/qr?text=123&light=f8f7f7&dark=0276b1&ecLevel=L&size=300&centerImageUrl=https://media.discordapp.net/attachments/1095729432066531409/1095729758135918714/LogoPNG2.png" />
+  
+  <script>
+    function generarCodigo() {
+  // Generamos un número aleatorio de 4 dígitos
+  const codigo = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+  
+  // Obtenemos la imagen
+  const imagen = document.querySelector('img');
+  
+  // Obtenemos la URL actual
+  const urlActual = new URL(imagen.src);
+  
+  // Reemplazamos el valor de text por el código generado
+  urlActual.searchParams.set('text', codigo);
+  
+  // Asignamos la nueva URL a la imagen
+  imagen.src = urlActual.toString();
+}
+
+// Generamos el primer código
+generarCodigo();
+
+// Generamos un nuevo código cada 2 segundos
+setInterval(generarCodigo, 4000);
+  </script>
+</body>
+</html>
